@@ -1,0 +1,45 @@
+---
+title: "Toolik Chemistry"
+author: "Carmen"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+toolik_biochem <- read_csv(here::here("data", "2011_Kling_Akchem.csv")) %>%
+janitor::clean_names()
+  
+inlet_biochem <- toolik_biochem %>%
+  dplyr::select(p_h, doc_u_m, tdn_u_m) %>%
+  mutate(across(everything(),as.numeric))
+
+#----way 1----
+mean(inlet_biochem$p_h, na.rm = TRUE)
+mean(inlet_biochem$doc_u_m, na.rm = TRUE)
+mean(inlet_biochem$tdn_u_m, na.rm = TRUE)
+
+#----way 2----
+map_df(.x = inlet_biochem, .f = mean, na.rm = TRUE)
+
+#---- way 3----
+lapply(inlet_biochem, mean, na.rm = TRUE)
+
+#---- for loop ----
+
+inlet_means <- vector(mode = "numeric", length = length(inlet_biochem))
+
+for (i in seq_along(inlet_biochem)) {
+  mean <- mean(inlet_biochem[[i]], na.rm = TRUE)
+  inlet_means[i] <- mean
+}
+print(inlet_means)
+```
+

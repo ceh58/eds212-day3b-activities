@@ -1,0 +1,71 @@
+---
+title: "Conditional Loops"
+author: "Carmen"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+## Task 1
+
+```{r}
+pm2_5 <-151
+
+if (pm2_5 < 100) {
+  print("Low to moderate risk.")
+} else if (100 <= pm2_5 & pm2_5 < 150) {
+  print("Unhealthy for sensitive groups.")
+} else
+  print("Health risk present.")
+```
+
+## Task 2
+
+```{r}
+library(stringr)
+species <- "blue whale"
+if (str_detect(species, "whale")) {
+  print("You found a whale!")
+}
+```
+
+## Task 3
+
+```{r}
+base_burrito <- 6.50
+main_ingredient <- "chicken"
+
+if (main_ingredient == "veggie") {
+  print(base_burrito)
+} else if (main_ingredient == "chicken") {
+  print(base_burrito + 3)
+} else if (main_ingredient == "steak") {
+  print(base_burrito + 3.25)
+}
+```
+
+## Task 4
+
+```{r}
+fish <- c(8, 10, 12, 23)
+total_pop <- sum(fish)
+
+for (i in seq_along(fish)) {
+  fish_prop <- fish[i] / total_pop
+  print(fish_prop)
+}
+```
+
+## Task 5
+
+```{r}
+month.name
+
+for (i in seq_along(month.name)) {
+  print(paste0(month.name[i], " is month ", i, "."))
+}
+```
+
+
+
