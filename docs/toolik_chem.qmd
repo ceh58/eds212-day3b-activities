@@ -33,7 +33,6 @@ map_df(.x = inlet_biochem, .f = mean, na.rm = TRUE)
 lapply(inlet_biochem, mean, na.rm = TRUE)
 
 #---- for loop ----
-
 inlet_means <- vector(mode = "numeric", length = length(inlet_biochem))
 
 for (i in seq_along(inlet_biochem)) {
